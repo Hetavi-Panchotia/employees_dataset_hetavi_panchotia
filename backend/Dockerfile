@@ -1,0 +1,1 @@
+FROM node:20-alpine\n\n# Set working directory\nWORKDIR /app\n\n# Install app dependencies\nCOPY package*.json ./\nRUN npm ci --only=production\n\n# Copy source code\nCOPY . .\n\n# Expose port (default 5000)\nEXPOSE 5000\n\n# Define environment variables (can be overridden at runtime)\nENV NODE_ENV=production\n\n# Start the server\nCMD ["npm", "run", "start"]\n
