@@ -16,6 +16,21 @@ app.use(morgan("dev"));
 app.use(express.json());
 app.use(logger);
 
+// Home route
+app.get("/", (req, res) => {
+  res.status(200).json({
+    status: "success",
+    message: "Employee Management Analytics API is running",
+    endpoints: {
+      auth: "/api/v1/auth",
+      employees: "/api/v1/employees",
+      search: "/api/v1/search",
+      analytics: "/api/v1/analytics",
+      stats: "/api/v1/stats",
+    },
+  });
+});
+
 // Routes
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/employees", employeeRoutes);
